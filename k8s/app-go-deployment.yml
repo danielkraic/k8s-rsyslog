@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rsyslog-app-go
+  labels:
+    app: rsyslog-app-go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rsyslog-app-go
+  template:
+    metadata:
+      labels:
+        app: rsyslog-app-go
+    spec:
+      containers:
+      - name: rsyslog-app-go
+        image: danielkraic/rsyslog-app-go:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "50m"
+          limits:
+            memory: "32Mi"
+            cpu: "100m"
+        volumeMounts:
+        - name: rsyslog-data
+          mountPath: /var/run/rsyslog/dev/
+          subPath: log
+      volumes:
+      - name: rsyslog-data
+        hostPath:
+          path: /rsyslog-data

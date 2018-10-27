@@ -1,0 +1,1 @@
+inspired by https://github.com/jumanjihouse/docker-rsyslog

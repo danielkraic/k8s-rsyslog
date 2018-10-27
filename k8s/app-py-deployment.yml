@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rsyslog-app-py
+  labels:
+    app: rsyslog-app-py
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rsyslog-app-py
+  template:
+    metadata:
+      labels:
+        app: rsyslog-app-py
+    spec:
+      containers:
+      - name: rsyslog-app-py
+        image: danielkraic/rsyslog-app-py:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "50m"
+          limits:
+            memory: "32Mi"
+            cpu: "100m"
+        volumeMounts:
+        - name: rsyslog-data
+          mountPath: /var/run/rsyslog/dev/
+          subPath: log
+      volumes:
+      - name: rsyslog-data
+        hostPath:
+          path: /rsyslog-data

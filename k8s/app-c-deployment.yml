@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rsyslog-app-c
+  labels:
+    app: rsyslog-app-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rsyslog-app-c
+  template:
+    metadata:
+      labels:
+        app: rsyslog-app-c
+    spec:
+      containers:
+      - name: rsyslog-app-c
+        image: danielkraic/rsyslog-app-c:latest
+        command: ["/bin/sh"]
+        args: ["-c", "ln -s /var/run/rsyslog/dev/log /dev/log && ./main"]
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "50m"
+          limits:
+            memory: "32Mi"
+            cpu: "100m"
+        volumeMounts:
+        - name: rsyslog-data
+          mountPath: /var/run/rsyslog/dev/
+          subPath: log
+      volumes:
+      - name: rsyslog-data
+        hostPath:
+          path: /rsyslog-data
