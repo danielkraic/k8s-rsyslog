@@ -4,15 +4,14 @@ services:
 
   rsyslog:
     build: rsyslog
-    ports:
-     - 514:514
-    networks:
-     - rsyslog-apps
+    volumes:
+      - rsyslog-data:/var/run/rsyslog/dev/
 
   app-go:
     build: app-go
-    networks:
-     - rsyslog-apps
+    command: /bin/sh -c "ln -s /var/run/rsyslog/dev/log /dev/log && ./app"
+    volumes:
+      - rsyslog-data:/var/run/rsyslog/dev/
 
-networks:
-  rsyslog-apps:
+volumes:
+  rsyslog-data:
