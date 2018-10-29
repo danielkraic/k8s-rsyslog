@@ -11,4 +11,4 @@ FROM alpine
 COPY --from=build /go/src/github.com/danielkraic/k8s-rsyslog/app-go/app /app/
 WORKDIR /app
 
-ENTRYPOINT ./app
+CMD ["./app"]

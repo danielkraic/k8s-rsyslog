@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  rsyslog:
+    build: rsyslog
+    volumes:
+     - rsyslog-socket:/var/run/rsyslog/dev/
+
+  app-go:
+    build: app-go
+    command: /bin/sh -c "ln -s /var/run/rsyslog/dev/log /dev/log && ./app"
+    volumes:
+     - rsyslog-socket:/var/run/rsyslog/dev/
+
+volumes:
+  rsyslog-socket:
