@@ -2,16 +2,49 @@
 
 
 [[projects]]
-  branch = "master"
-  digest = "1:bb6c15391e666c4f44bdc604772301b93102233ed687be6df6d1c2abbde4f15c"
-  name = "github.com/RackSec/srslog"
+  digest = "1:0a69a1c0db3591fcefb47f115b224592c8dfa4368b7ba9fae509d5e16cdc95c8"
+  name = "github.com/konsorten/go-windows-terminal-sequences"
   packages = ["."]
   pruneopts = "UT"
-  revision = "a4725f04ec91af1a91b380da679d6e0c2f061e59"
+  revision = "5c8c8bd35d3832f5d134ae1e1e375b69a4d25242"
+  version = "v1.0.1"
+
+[[projects]]
+  digest = "1:edd2cd814d8bb5564f12f661fdcdebce60ddf422461e81ff38f7c2d6c5d2bbcf"
+  name = "github.com/sirupsen/logrus"
+  packages = [
+    ".",
+    "hooks/syslog",
+  ]
+  pruneopts = "UT"
+  revision = "ad15b42461921f1fb3529b058c6786c6a45d5162"
+  version = "v1.1.1"
+
+[[projects]]
+  branch = "master"
+  digest = "1:3f3a05ae0b95893d90b9b3b5afdb79a9b3d96e4e36e099d841ae602e4aca0da8"
+  name = "golang.org/x/crypto"
+  packages = ["ssh/terminal"]
+  pruneopts = "UT"
+  revision = "b078efbc8099b041569edb8c6ab625cd430e3fce"
+
+[[projects]]
+  branch = "master"
+  digest = "1:a5090ea95e2600b2a369df77359c5871948f12bc8f0632db0342f5acc5e30c1d"
+  name = "golang.org/x/sys"
+  packages = [
+    "unix",
+    "windows",
+  ]
+  pruneopts = "UT"
+  revision = "d69651ed3497faee15a5363a89578e9991f6d5e2"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/RackSec/srslog"]
+  input-imports = [
+    "github.com/sirupsen/logrus",
+    "github.com/sirupsen/logrus/hooks/syslog",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
