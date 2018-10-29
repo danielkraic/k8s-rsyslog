@@ -17,6 +17,8 @@ spec:
       containers:
       - name: rsyslog-app-go
         image: danielkraic/rsyslog-app-go:latest
+        command: ["/bin/sh"]
+        args: ["-c", "ln -s /var/run/rsyslog/dev/log /dev/log && ./app"]
         imagePullPolicy: Always
         resources:
           requests:
