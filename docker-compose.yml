@@ -13,5 +13,11 @@ services:
     volumes:
       - rsyslog-data:/var/run/rsyslog/dev/
 
+  app-py:
+    build: app-py
+    command: /bin/sh -c "ln -s /var/run/rsyslog/dev/log /dev/log && python main.py"
+    volumes:
+      - rsyslog-data:/var/run/rsyslog/dev/
+
 volumes:
   rsyslog-data:

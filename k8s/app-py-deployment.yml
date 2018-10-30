@@ -17,6 +17,8 @@ spec:
       containers:
       - name: rsyslog-app-py
         image: danielkraic/rsyslog-app-py:latest
+        command: ["/bin/sh"]
+        args: ["-c", "ln -s /var/run/rsyslog/dev/log /dev/log && python main.py"]
         imagePullPolicy: Always
         resources:
           requests:
