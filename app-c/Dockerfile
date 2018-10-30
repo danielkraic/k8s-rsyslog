@@ -6,6 +6,6 @@ RUN apk add --no-cache \
 COPY . /app/
 WORKDIR /app
 
-RUN gcc main.c -o main
+RUN gcc main.c -o app
 
-CMD ["./main"]
+CMD ["./app"]

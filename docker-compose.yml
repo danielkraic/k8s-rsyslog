@@ -7,6 +7,12 @@ services:
     volumes:
       - rsyslog-data:/var/run/rsyslog/dev/
 
+  app-c:
+    build: app-c
+    command: /bin/sh -c "ln -s /var/run/rsyslog/dev/log /dev/log && ./app"
+    volumes:
+      - rsyslog-data:/var/run/rsyslog/dev/
+
   app-go:
     build: app-go
     command: /bin/sh -c "ln -s /var/run/rsyslog/dev/log /dev/log && ./app"

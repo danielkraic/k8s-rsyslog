@@ -5,7 +5,7 @@ metadata:
   labels:
     app: rsyslog-app-c
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: rsyslog-app-c
@@ -18,7 +18,7 @@ spec:
       - name: rsyslog-app-c
         image: danielkraic/rsyslog-app-c:latest
         command: ["/bin/sh"]
-        args: ["-c", "ln -s /var/run/rsyslog/dev/log /dev/log && ./main"]
+        args: ["-c", "ln -s /var/run/rsyslog/dev/log /dev/log && ./app"]
         imagePullPolicy: Always
         resources:
           requests:
